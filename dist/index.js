@@ -19,12 +19,14 @@ const { Server } = require('socket.io');
 const http = require('http');
 const fs = require('fs');
 const cors = require('cors');
-const ytdl = require('@distube/ytdl-core');
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.use(cors());
 app.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.send('Server Socket connected');
+}));
+app.get('/ping', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.json('Ping worked');
 }));
 app.use(express_1.default.static(path_1.default.join(__dirname, '..', 'public')));
 const server = http.createServer(app);
@@ -40,6 +42,7 @@ const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
     console.log(`Server is running on port  ${PORT}`);
 });
+/** Websocket */
 const events = fs.readdirSync(__dirname + '/Events').map((file) => file.replace('.ts', ''));
 const Parties = new Map();
 const Players = new Map();
