@@ -1,1 +1,1 @@
-worker: pnpm start
+web: node dist/index.js
